@@ -3,9 +3,10 @@ import { getSession } from "next-auth/react";
 import { stripe } from "../../services/stripe";
 
 
-const subscriptionFunction = async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log(req.method)
   if(req.method === "POST"){
-    const session = await getSession({req});
+    const session = await getSession({ req });
 
     const stripeCustomer = await stripe.customers.create({
       email: session.user.email,
@@ -32,4 +33,3 @@ const subscriptionFunction = async (req: NextApiRequest, res: NextApiResponse) =
   }
 }
 
-export default subscriptionFunction;
