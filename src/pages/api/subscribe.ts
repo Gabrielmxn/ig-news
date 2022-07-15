@@ -44,7 +44,7 @@ type User = {
         )
       )
 
-      customerId: stripeCustomer.id;
+      customerId = stripeCustomer.id;
     }
   
     const stripeCheckoutSession = await stripe.checkout.sessions.create({
