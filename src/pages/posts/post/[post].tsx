@@ -1,24 +1,34 @@
 import { PrismicRichText } from '@prismicio/react';
 import { format, parseISO } from 'date-fns';
 import ptBR  from 'date-fns/locale/pt-BR';
+import styles from './styles.module.scss';
 
-import { NextApiRequest, NextApiResponse } from 'next';
-import { useRouter } from 'next/router'
+import Head from 'next/head';
 import { createClient } from '../../../services/prismic';
 
 export default function Post( {postFatory} ){
   console.log(postFatory)
   return(
     <>
-      <h2>{postFatory.title}</h2>
-      <PrismicRichText field={postFatory.content} />
+      <Head>
+        <title>{postFatory.title} | Ignews</title>
+      </Head>
+      <main className={styles.container}>
+        <article className={styles.post}>
+          <h1>{postFatory.title}</h1>
+          <time>{postFatory.createdAt}</time>
+          <div className={styles.pastContent}>
+            <PrismicRichText field={postFatory.content} />
+          </div>
+        </article>
+      </main>
     </>
     
   )
 }
 
 
-export async function getServerSideProps({params, previewData}) {
+export async function getServerSideProps({req, params, previewData}) {
 
   const client = createClient({ previewData, accessToken: process.env.PRISMIC_ACCESS_TOKEN })
 
