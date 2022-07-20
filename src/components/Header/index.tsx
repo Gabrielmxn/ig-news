@@ -9,7 +9,7 @@ interface TypePageSelect{
   post: boolean;
 }
 export function Header(){
-  const router = useRouter()
+  const { asPath } = useRouter()
   
   return(
     <header className={styles.headerContainer}>
@@ -17,10 +17,10 @@ export function Header(){
         <img src="/images/logo.svg" alt="Logo" />
         <nav>
           <Link href="/">
-            <a className={router.asPath === '/' ? styles.active : ''}>Home</a>
+            <a className={asPath === '/' ? styles.active : ''}>Home</a>
           </Link>
-          <Link href="/posts">
-            <a className={router.asPath === '/posts' ? styles.active : ''}>Post</a>
+          <Link href="/posts" prefetch>
+            <a className={asPath === '/posts' ? styles.active : ''}>Post</a>
           </Link>
         </nav>
         <SignInButton />
