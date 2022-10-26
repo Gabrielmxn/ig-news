@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { SignInButton } from '../SignInButton';
 import styles from './styles.module.scss';
 
@@ -19,7 +18,7 @@ export function Header(){
           <Link href="/">
             <a className={asPath === '/' ? styles.active : ''}>Home</a>
           </Link>
-          <Link href="/posts" prefetch>
+          <Link href="/posts">
             <a className={asPath === '/posts' ? styles.active : ''}>Post</a>
           </Link>
         </nav>

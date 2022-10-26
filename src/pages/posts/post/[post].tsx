@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 
 import Head from 'next/head';
 import { createClient } from '../../../services/prismic';
+import { getSession } from 'next-auth/react';
 
 export default function Post( {postFatory} ){
   console.log(postFatory)
@@ -29,6 +30,16 @@ export default function Post( {postFatory} ){
 
 
 export async function getServerSideProps({req, params, previewData}) {
+  const session = await getSession({ req });
+
+  if(!session?.activeSubscription){
+   return{
+    redirect: {
+      destination: '/',
+      permanent: false
+     }
+    }
+  }
 
   const client = createClient({ previewData, accessToken: process.env.PRISMIC_ACCESS_TOKEN })
 

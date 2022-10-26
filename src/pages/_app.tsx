@@ -5,12 +5,11 @@ import '../styles/global.scss';
 import Link from 'next/link'
 import { PrismicProvider } from '@prismicio/react'
 import { PrismicPreview } from '@prismicio/next'
-import { linkResolver, repositoryName } from '../services/prismic'
+import {  repositoryName } from '../services/prismic'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return(
     <PrismicProvider
-    linkResolver={linkResolver}
     internalLinkComponent={({ href, children, ...props }) => (
       <Link href={href}>
         <a {...props}>

@@ -55,7 +55,6 @@ export async function getStaticProps({params,  previewData }) {
   })
 
   const newPostsItem = documents.map(postItem => {
-    console.log(postItem)
     return(
       {
         uid: postItem.uid,
@@ -67,8 +66,7 @@ export async function getStaticProps({params,  previewData }) {
   })
   
 
-  console.log('TEST');
-  console.log(newPostsItem);
+
   return {
     props: { 
       newPostsItem 
